@@ -23,6 +23,7 @@ namespace VendingMachine
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = new ViewModel.MainWindowViewModel();
         }
     }
 }

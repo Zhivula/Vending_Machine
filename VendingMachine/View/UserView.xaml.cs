@@ -23,6 +23,7 @@ namespace VendingMachine.View
         public UserView()
         {
             InitializeComponent();
+            DataContext = new ViewModel.UserViewModel();
         }
     }
 }

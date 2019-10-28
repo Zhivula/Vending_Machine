@@ -1,0 +1,70 @@
+﻿<UserControl x:Class="VendingMachine.View.PanelView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:VendingMachine.View"
+             mc:Ignorable="d" 
+             Name="Control"
+             d:DesignHeight="200" d:DesignWidth="150">
+    <Button Command="{Binding ButtonCommand, ElementName=Control}" CommandParameter="{Binding}" Background="Red">
+        <Button.Template>
+            <ControlTemplate TargetType="{x:Type Button}">
+                <Grid>
+                    <Grid.Effect>
+                        <DropShadowEffect BlurRadius="4" ShadowDepth="0" Direction="-90" Opacity="0.5"/>
+                    </Grid.Effect>
+                    <Border Name="Mask" Background="Red" CornerRadius="7" Margin="5"/>
+                    <Border Background="Red" Margin="5">
+                        <Border.OpacityMask>
+                            <VisualBrush Visual="{Binding ElementName=Mask}"/>
+                        </Border.OpacityMask>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0">
+                                <Label Content="{Binding NameProduct}" Foreground="Blue" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
+                            </Grid>
+                            <Grid Grid.Row="1">
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="Стоимость:" Foreground="Gray" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
+                                    <Label Content="{Binding Price}" Foreground="Green" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
+                                </StackPanel>
+                            </Grid>
+                            <Grid Grid.Row="2">
+                                <Label Content="Осталось" Foreground="Gray" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
+                                <Label Content="{Binding Count}" Foreground="Red" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
+                            </Grid>
+
+                        </Grid>
+                    </Border>
+                </Grid>
+            </ControlTemplate>
+        </Button.Template>
+    </Button>
+
+    <!--<Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Label Content="{Binding Name}" Foreground="Blue" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
+        </Grid>
+        <Grid Grid.Row="1">
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Стоимость:" Foreground="Gray" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
+                <Label Content="{Binding Price}" Foreground="Green" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Label Content="Осталось" Foreground="Gray" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
+            <Label Content="{Binding Count}" Foreground="Red" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
+        </Grid>
+
+    </Grid>-->
+</UserControl>

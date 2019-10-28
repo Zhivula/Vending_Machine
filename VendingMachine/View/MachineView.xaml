@@ -3,10 +3,44 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:VendingMachine.View"
+             xmlns:ViewModel="clr-namespace:VendingMachine"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="500">
     <Grid>
-            
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Background="Blue">
+            <Label Content="VendingMachine" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
+        </Grid>
+        <Grid Grid.Row="1">
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Внесенная сумма: " Foreground="Gray" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="25" Margin="50 0 0 0"/>
+                <Label Content="{Binding InputSumma}" Foreground="LightGreen" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="30" Margin="20 0 0 0" FontWeight="DemiBold"/>
+                <Button HorizontalAlignment="Left" VerticalAlignment="Center" Content="Вернуть деньги" />
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="2">
+            <ItemsControl ItemsSource="{Binding Panels}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <local:PanelView Width="150" Height="150"    
+                                ButtonCommand="{Binding Command}"
+                                Price="{Binding Price}" 
+                                Count="{Binding Count}"
+                                NameProduct ="{Binding Name}"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Grid>
     </Grid>
 </UserControl>
