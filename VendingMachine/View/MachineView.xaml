@@ -20,7 +20,7 @@
         <Grid Grid.Row="1">
             <StackPanel Orientation="Horizontal">
                 <Label Content="Внесенная сумма: " Foreground="Gray" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="25" Margin="50 0 0 0"/>
-                <Label Content="{Binding InputSumma}" Foreground="LightGreen" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="30" Margin="20 0 0 0" FontWeight="DemiBold"/>
+                <Label Content="{Binding InputSumma,UpdateSourceTrigger=PropertyChanged}" x:Name="Input" Foreground="LightGreen" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="30" Margin="20 0 0 0" FontWeight="DemiBold"/>
                 <Button HorizontalAlignment="Left" VerticalAlignment="Center" Content="Вернуть деньги" />
             </StackPanel>
         </Grid>

@@ -1,44 +1,36 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using VendingMachine.Model;
 
 namespace VendingMachine.ViewModel
 {
-    class MachineViewModel
+    class MachineViewModel: DependencyObject, INotifyPropertyChanged
     {
-        public ObservableCollection<PanelViewModel> Panels { get; set; } = new ObservableCollection<PanelViewModel>();
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        public void OnPropertyChanged(string name)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+        private int inputsumma;
+        public int InputSumma
+        {
+            get => inputsumma;
+            set
+            {
+                inputsumma = value;
+                OnPropertyChanged(nameof(InputSumma));
+            }
+        }
         public MachineViewModel()
         {
-            Panels.Add(new PanelViewModel
-            {
-                Name = "A",
-                Price = 10,
-                Count = 10,
-                Command = new Model.DelegateCommand(o => { Clicked(); })
-            });
-            Panels.Add(new PanelViewModel
-            {
-                Name = "A",
-                Price = 10,
-                Count = 10,
-                Command = new Model.DelegateCommand(o => { Clicked(); })
-            });
-                        Panels.Add(new PanelViewModel
-            {
-                Name = "A",
-                Price = 10,
-                Count = 10,
-                Command = new Model.DelegateCommand(o => { Clicked(); })
-            });
-        }
-
-        void Clicked()
-        {
-            MessageBox.Show("Кнопка нажата!");
+            
         }
     }
 }

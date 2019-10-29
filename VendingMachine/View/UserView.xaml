@@ -18,10 +18,10 @@
             <ListBox Grid.Column="0" ItemsSource="{Binding Items}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Margin="5">
-                            <TextBlock FontSize="18" Text="{Binding Path=FaceValue}" />
-                            <TextBlock Text="{Binding Path=Count}" />
-                            <Button Content="Внести"/>
+                        <StackPanel Margin="5" Orientation="Horizontal">
+                            <Label FontSize="18" Content="{Binding Path=FaceValueName}" Foreground="Gray"/>
+                            <Label Content="{Binding Path=Count}" Foreground="Gray"/>
+                            <Button Content="Внести" Command="{Binding Command}"/>
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>

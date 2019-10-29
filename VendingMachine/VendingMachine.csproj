@@ -79,6 +79,7 @@
     <Compile Include="Model\MachineModel.cs" />
     <Compile Include="Model\PanelModel.cs" />
     <Compile Include="Model\UserModel.cs" />
+    <Compile Include="Model\Wallet.cs" />
     <Compile Include="ViewModel\MachineViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="ViewModel\PanelViewModel.cs" />
