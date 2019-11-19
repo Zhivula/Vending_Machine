@@ -11,11 +11,89 @@
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Grid Grid.Column="0" x:Name="Machine">
-            
+        <Grid>
+            <Grid Grid.Column="0" x:Name="Machine">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" Background="Blue">
+                <Label Content="VendingMachine" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
+            </Grid>
+            <Grid Grid.Row="1">
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Внесенная сумма: " Foreground="Gray" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="25" Margin="50 0 0 0"/>
+                    <Label Content="{Binding InputSumma}" Foreground="LightGreen" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="30" Margin="20 0 0 0" FontWeight="DemiBold"/>
+                    <Button HorizontalAlignment="Left" VerticalAlignment="Center" Content="Вернуть деньги" Command="{Binding ReturnMoney}"/>
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Row="2">
+                <ItemsControl ItemsSource="{Binding Panels}" x:Name="ItemsControl">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                                <Grid Width="100" Height="100"  Margin="20">
+                                    <Border CornerRadius="7"  Background="White">
+                                        <Border.Effect>
+                                            <DropShadowEffect ShadowDepth="0" Direction="90" Color="Black" Opacity="0.75"  BlurRadius="10.0" />
+                                        </Border.Effect>
+                                    </Border>
+                                    <Button Command="{Binding Command}" Style="{x:Null}">
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="*"/>
+                                                <RowDefinition Height="*"/>
+                                                <RowDefinition Height="*"/>
+                                            </Grid.RowDefinitions>
+                                            <Grid Grid.Row="0">
+                                                <Border BorderBrush="Gray" BorderThickness="0 0 0 2"/>
+                                                <Label Grid.Row="0" Content="{Binding Name}" Foreground="#3949ab" HorizontalAlignment="Center" FontWeight="Bold"/>
+                                            </Grid>
+                                            <StackPanel Grid.Row="1" Orientation="Horizontal">
+                                                <Label Content="Стоимость: " Foreground="Gray" HorizontalAlignment="Center"/>
+                                                <Label Content="{Binding Price}" Foreground="Red" HorizontalAlignment="Center" FontWeight="DemiBold"/>
+                                            </StackPanel>
+                                            <StackPanel Grid.Row="2" Orientation="Horizontal">
+                                                <Label Content="Осталось: " Foreground="Gray" HorizontalAlignment="Center"/>
+                                                <Label Content="{Binding Count}" Foreground="Green" HorizontalAlignment="Center" FontWeight="DemiBold"/>
+                                            </StackPanel>
+                                        </Grid>
+                                    </Button>
+                                </Grid>
+                            </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </Grid>
         </Grid>
+    </Grid>
         <Grid Grid.Column="1" x:Name="User">
-
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" Background="#3949ab">
+                    <Label Content="User" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
+                </Grid>
+                <Grid Grid.Row="1">
+                    <ListBox Grid.Column="0" ItemsSource="{Binding Items}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Margin="5" Orientation="Horizontal">
+                                    <Label FontSize="18" Content="{Binding Path=FaceValueName}" Foreground="Gray"/>
+                                    <Label Content="{Binding Path=Count}" Foreground="Gray"/>
+                                    <Button Content="Внести" Command="{Binding Command}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>
+            </Grid>
         </Grid>
     </Grid>
 </Window>

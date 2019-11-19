@@ -9,14 +9,11 @@ using VendingMachine.ViewModel;
 
 namespace VendingMachine.Model
 {
-    class PanelModel : INotifyPropertyChanged
+    class UserWallet : INotifyPropertyChanged
     {
         private int count;
-        private int price;
-        private string name;
-
+        private int facevalue;
         public DelegateCommand Command { get; set; }
-
         public int Count
         {
             get => count;
@@ -26,47 +23,38 @@ namespace VendingMachine.Model
                 OnPropertyChanged(nameof(Count));
             }
         }
-
-        public int Price
+        public int FaceValue
         {
-            get => price;
+            get => facevalue;
             set
             {
-                price = value;
-                OnPropertyChanged(nameof(Price));
+                facevalue = value;
+                OnPropertyChanged(nameof(FaceValue));
             }
         }
-        public string Name
+        public string FaceValueName
         {
-            get => name;
-            set
-            {
-                name = value;
-                OnPropertyChanged(nameof(Name));
-            }
+            get => FaceValue.ToString() + "р.";
         }
-
-        public PanelModel()
+        public UserWallet()
         {
-            Command = new DelegateCommand(o => { Method(); });
+            Command = new DelegateCommand(o=> { Method(); });
         }
-
         public void Method()
         {
-            var mainWindow = MainWindowViewModel.GetMainWindowSingleton();
-            if (Count > 0 && mainWindow.InputSumma-Price >= 0)
+            var mainWindowViewModel = MainWindowViewModel.GetMainWindowSingleton();
+            if (Count > 0)
             {
                 Count--;
-                mainWindow.InputSumma -= Price;
+                mainWindowViewModel.InputSumma += FaceValue;
                 MessageBox.Show("Операция выполнена успешно!");
             }
             else MessageBox.Show("Ошибка операции!");
         }
-
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged(string name)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+             PropertyChanged?.Invoke(this,new PropertyChangedEventArgs(name));
         }
     }
 }

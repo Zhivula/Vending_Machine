@@ -75,24 +75,8 @@
     </ApplicationDefinition>
     <Compile Include="DataBase\MyDbContext.cs" />
     <Compile Include="DataBase\Product.cs" />
+    <Compile Include="Model\Algorithm.cs" />
     <Compile Include="Model\DelegateCommand.cs" />
-    <Compile Include="Model\MachineModel.cs" />
-    <Compile Include="Model\PanelModel.cs" />
-    <Compile Include="Model\UserModel.cs" />
-    <Compile Include="Model\Wallet.cs" />
-    <Compile Include="ViewModel\MachineViewModel.cs" />
-    <Compile Include="ViewModel\MainWindowViewModel.cs" />
-    <Compile Include="ViewModel\PanelViewModel.cs" />
-    <Compile Include="ViewModel\UserViewModel.cs" />
-    <Compile Include="View\MachineView.xaml.cs">
-      <DependentUpon>MachineView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\PanelView.xaml.cs">
-      <DependentUpon>PanelView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\UserView.xaml.cs">
-      <DependentUpon>UserView.xaml</DependentUpon>
-    </Compile>
     <Page Include="View\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -101,22 +85,13 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Model\PanelModel.cs" />
+    <Compile Include="Model\UserWallet.cs" />
+    <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="View\MachineView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\PanelView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\UserView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
