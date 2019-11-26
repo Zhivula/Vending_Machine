@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VendingMachine.DataBase;
 using VendingMachine.Model;
 
 namespace VendingMachine.ViewModel
@@ -11,6 +12,8 @@ namespace VendingMachine.ViewModel
     class MainWindowViewModel : INotifyPropertyChanged
     {
         private static MainWindowViewModel mainWindowSingleton;
+
+        private MainWindowModel mainWindowModel;
 
         private int inputSumma;
 
@@ -32,56 +35,10 @@ namespace VendingMachine.ViewModel
 
         public MainWindowViewModel()
         {
-            Items = new List<UserWallet>
-            {
-                new UserWallet()
-                {
-                    Count = 20,
-                    FaceValue = 1
-                },
-                new UserWallet()
-                {
-                    Count = 20,
-                    FaceValue = 2
-                },
-                new UserWallet()
-                {
-                    Count = 20,
-                    FaceValue = 5
-                },
-                new UserWallet()
-                {
-                    Count = 20,
-                    FaceValue = 10
-                }
-            };
-            Panels = new List<PanelModel>
-            {
-                new PanelModel
-                {
-                    Count = 10,
-                    Name = "Чай",
-                    Price = 1
-                },
-                new PanelModel
-                {
-                    Count = 20,
-                    Name = "Кофе",
-                    Price = 2
-                },
-                new PanelModel
-                {
-                    Count = 35,
-                    Name = "Сок",
-                    Price = 5
-                },
-                new PanelModel
-                {
-                    Count = 5,
-                    Name = "Лимонад",
-                    Price = 1
-                }
-            };
+            
+            mainWindowModel = new MainWindowModel();
+            Items = mainWindowModel.Items;
+            Panels = mainWindowModel.Panels;
             ReturnMoney = new DelegateCommand(o=> { ReturnMoneyMethod(); });
         }
 
@@ -95,9 +52,20 @@ namespace VendingMachine.ViewModel
                 mainWindowSingleton = new MainWindowViewModel();
             return mainWindowSingleton;
         }
+        /// <summary>
+        /// Метод возвращения внесенной суммы на кошелек пользователя.
+        /// </summary>
         public void ReturnMoneyMethod()
         {
-            var algorithm = new Algorithm();
+            var algorithm = new Algorithm(Items.Select( x => x.FaceValue).ToArray(), InputSumma);
+
+            int i = 0;
+            foreach (var item in Items)
+            {                
+                item.Count += algorithm.result[i];
+                i++;
+            }
+            InputSumma = 0;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

@@ -29,7 +29,8 @@
                 </StackPanel>
             </Grid>
             <Grid Grid.Row="2">
-                <ItemsControl ItemsSource="{Binding Panels}" x:Name="ItemsControl">
+                    <ScrollViewer>
+                        <ItemsControl ItemsSource="{Binding Panels}" x:Name="ItemsControl">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <WrapPanel />
@@ -68,6 +69,7 @@
                             </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
+                        </ScrollViewer >
             </Grid>
         </Grid>
     </Grid>

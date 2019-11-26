@@ -14,6 +14,7 @@ namespace VendingMachine.Model
         private int count;
         private int facevalue;
         public DelegateCommand Command { get; set; }
+
         public int Count
         {
             get => count;
@@ -23,6 +24,7 @@ namespace VendingMachine.Model
                 OnPropertyChanged(nameof(Count));
             }
         }
+
         public int FaceValue
         {
             get => facevalue;
@@ -32,14 +34,14 @@ namespace VendingMachine.Model
                 OnPropertyChanged(nameof(FaceValue));
             }
         }
-        public string FaceValueName
-        {
-            get => FaceValue.ToString() + "р.";
-        }
+
+        public string FaceValueName => FaceValue.ToString() + "р.";
+
         public UserWallet()
         {
             Command = new DelegateCommand(o=> { Method(); });
         }
+
         public void Method()
         {
             var mainWindowViewModel = MainWindowViewModel.GetMainWindowSingleton();

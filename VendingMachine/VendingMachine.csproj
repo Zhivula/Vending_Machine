@@ -85,6 +85,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Model\MainWindowModel.cs" />
     <Compile Include="Model\PanelModel.cs" />
     <Compile Include="Model\UserWallet.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
